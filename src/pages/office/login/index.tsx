@@ -30,7 +30,7 @@ export default function Home() {
         showConfirmButton: false,
         timer: 1500,
       });
-      router.push("/main/dashboard");
+      router.push("/office/main/dashboard");
       setLoading(false);
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -70,7 +70,7 @@ export default function Home() {
         <div className=" lg:mt-0 mt-5 lg:w-1/2 w-full lg:ml-40 ml-0 lg:mr-20 mr-0 lg:px-0 px-5">
           <div className="bg-white rounded-lg shadow lg:px-10 px-4 lg:py-20 py-6">
             <h5 className={`text-center font-bold text-xl text-orange-500`}>
-              Login
+              Back Office Login
             </h5>
             <p className="text-center text-gray-500 mt-2">
               Enter your Username and Password to get started
@@ -93,31 +93,6 @@ export default function Home() {
                 showPassword={showPassword}
                 setShowPassword={setShowPassword}
               />
-              <div className="flex flex-row justify-between items-center mt-2">
-                <div className="flex flex-row gap-2 items-center">
-                  {/* <button
-                    type="button"
-                    onClick={() => {
-                      setChecked(!checked);
-                    }}
-                    className={`border rounded w-5 h-5 ${
-                      checked
-                        ? "bg-orange-500 flex items-center justify-center border-orange-700"
-                        : "bg-transparent border-gray-800"
-                    }`}
-                  >
-                    {checked ? (
-                      <CheckIcon className="text-white w-4 h-4 font-bold" />
-                    ) : (
-                      ""
-                    )}
-                  </button>
-                  <span className="text-xs">Remember me</span> */}
-                </div>
-                <Link href={"forgot-password"} className="text-xs text-red-500">
-                  Forgot Password
-                </Link>
-              </div>
               {errorMessage && (
                 <p className="my-1 text-sm text-red-500">{errorMessage}</p>
               )}

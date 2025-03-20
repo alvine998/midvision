@@ -35,3 +35,26 @@ export const NAVIGATIONS = [
         icon: "/icons/document-text.svg",
     },
 ];
+
+export const OFFICE_NAVIGATIONS = [
+    {
+        title: "Dashboard",
+        href: "/office/main/dashboard",
+        icon: "/icons/dashboard",
+    },
+    {
+        title: "Partner",
+        href: "/office/main/partner",
+        icon: "/icons/partner",
+    },
+    {
+        title: "User",
+        href: "/office/main/user",
+        icon: "/icons/user",
+    },
+    {
+        title: "User Log",
+        href: "/office/main/user-log",
+        icon: "/icons/user-log",
+    }
+]
