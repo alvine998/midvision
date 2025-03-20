@@ -65,10 +65,14 @@ export default function index() {
   return (
     <div>
       <div className="flex lg:flex-row flex-col gap-2 justify-between items-center">
-        <Input placeholder="Cari disini..." />
-        <div className="flex gap-2 lg:flex-row flex-col items-center">
-          <Button variant="success">Download</Button>
-          <Button>+ Add Partner</Button>
+        <div className="lg:w-auto w-full">
+          <Input placeholder="Cari disini..." />
+        </div>
+        <div className="flex gap-2 lg:flex-row flex-col items-center lg:w-auto w-full">
+          <Button variant="success" className="lg:w-auto w-full">
+            Download
+          </Button>
+          <Button className="lg:w-auto w-full">+ Add Partner</Button>
         </div>
       </div>
       <div className="w-full overflow-x-auto">
