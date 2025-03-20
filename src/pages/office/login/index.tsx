@@ -99,6 +99,17 @@ export default function Home() {
               <Button variant="primary" disabled={loading} className="mt-4">
                 {loading ? "Loading..." : "Login"}
               </Button>
+              <Button
+                variant="success"
+                type="button"
+                onClick={() => {
+                  router.push("/");
+                }}
+                disabled={loading}
+                
+              >
+                Login as Partner
+              </Button>
             </form>
           </div>
         </div>
