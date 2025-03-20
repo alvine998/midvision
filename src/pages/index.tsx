@@ -1,115 +1,133 @@
+import Button from "@/components/common/Button";
+import Input from "@/components/common/Input";
+import { CheckIcon } from "lucide-react";
+import Head from "next/head";
 import Image from "next/image";
-import localFont from "next/font/local";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function Home() {
-  return (
-    <div
-      className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/pages/index.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const router = useRouter();
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const payload = {
+        username: (e.target as HTMLFormElement).username.value,
+        password: (e.target as HTMLFormElement).password.value,
+      };
+      console.log(payload);
+      Swal.fire({
+        icon: "success",
+        title: "Login Success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      router.push("/main/dashboard");
+      setLoading(false);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.log(error);
+        if (
+          "response" in error &&
+          error.response &&
+          typeof error.response === "object"
+        ) {
+          const response = error.response as {
+            data?: { error_message?: string };
+          };
+          setErrorMessage(response.data?.error_message);
+        } else {
+          setErrorMessage("An unexpected error occurred");
+        }
+        setLoading(false);
+      } else {
+        console.error("An unknown error occurred");
+      }
+    }
+  };
+  return (
+    <div className='bg-[url("/images/bg-login.png")] bg-cover bg-center h-screen lg:p-10 flex flex-col items-center justify-center z-0'>
+      <Head>
+        <title>Login</title>
+      </Head>
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-[#85676799] z-10"></div>
+      <div className="flex lg:flex-row flex-col justify-between items-center w-full z-30">
+        <div className="w-1/2 lg:block hidden">
+          <h1 className="text-4xl font-bold text-white">MIDVISION</h1>
+          <h3 className="text-2xl font-bold text-white mt-4">
+            One Stop Solution for all your management employee needs
+          </h3>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className=" lg:mt-0 mt-5 lg:w-1/2 w-full lg:ml-40 ml-0 lg:mr-20 mr-0 lg:px-0 px-5">
+          <div className="bg-white rounded-lg shadow lg:px-10 px-4 lg:py-20 py-6">
+            <h5 className={`text-center font-bold text-xl text-orange-500`}>
+              Login
+            </h5>
+            <p className="text-center text-gray-500 mt-2">
+              Enter your Username and Password to get started
+            </p>
+
+            <form onSubmit={onSubmit} className="flex flex-col gap-2 mt-5">
+              <Input
+                name="email"
+                label="Email"
+                required
+                placeholder="Enter email"
+                type="email"
+              />
+              <Input
+                name="password"
+                label="Password"
+                required
+                placeholder="********"
+                type="password"
+                showPassword={showPassword}
+                setShowPassword={setShowPassword}
+              />
+              <div className="flex flex-row justify-between items-center mt-2">
+                <div className="flex flex-row gap-2 items-center">
+                  {/* <button
+                    type="button"
+                    onClick={() => {
+                      setChecked(!checked);
+                    }}
+                    className={`border rounded w-5 h-5 ${
+                      checked
+                        ? "bg-orange-500 flex items-center justify-center border-orange-700"
+                        : "bg-transparent border-gray-800"
+                    }`}
+                  >
+                    {checked ? (
+                      <CheckIcon className="text-white w-4 h-4 font-bold" />
+                    ) : (
+                      ""
+                    )}
+                  </button>
+                  <span className="text-xs">Remember me</span> */}
+                </div>
+                <Link href={"forgot-password"} className="text-xs text-red-500">
+                  Forgot Password
+                </Link>
+              </div>
+              {errorMessage && (
+                <p className="my-1 text-sm text-red-500">{errorMessage}</p>
+              )}
+              <Button variant="primary" disabled={loading} className="mt-4">
+                {loading ? "Loading..." : "Login"}
+              </Button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
