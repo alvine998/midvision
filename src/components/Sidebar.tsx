@@ -3,29 +3,39 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { INavigation } from "../types/navigation";
-import { BarChart2Icon, HistoryIcon, UserIcon, Users2Icon } from "lucide-react";
+import {
+  BarChart2Icon,
+  HistoryIcon,
+  ListChecksIcon,
+  UserIcon,
+  Users2Icon,
+} from "lucide-react";
 
 interface Props {
   navigations: INavigation[];
   isWide: boolean;
 }
 
+export const getIcon = (icon: string) => {
+  switch (icon) {
+    case "/icons/dashboard":
+      return <BarChart2Icon className="w-6 h-6 text-white" />;
+    case "/icons/partner":
+      return <Users2Icon className="w-6 h-6 text-white" />;
+    case "/icons/user":
+      return <UserIcon className="w-6 h-6 text-white" />;
+    case "/icons/user-log":
+      return <HistoryIcon className="w-6 h-6 text-white" />;
+    case "/icons/package":
+      return <ListChecksIcon className="w-6 h-6 text-white" />;
+    default:
+      return <></>;
+  }
+};
+
 export default function Sidebar({ navigations, isWide }: Props) {
   const pathname = usePathname();
-  const getIcon = (icon: string) => {
-    switch (icon) {
-      case "/icons/dashboard":
-        return <BarChart2Icon className="w-6 h-6 text-white" />;
-      case "/icons/partner":
-        return <Users2Icon className="w-6 h-6 text-white" />;
-      case "/icons/user":
-        return <UserIcon className="w-6 h-6 text-white" />;
-      case "/icons/user-log":
-        return <HistoryIcon className="w-6 h-6 text-white" />;
-      default:
-        return <></>;
-    }
-  };
+
   return (
     <div className="flex flex-col items-center py-2">
       <div className="mt-2">

@@ -1,11 +1,10 @@
 import Button from "@/components/common/Button";
 import Input from "@/components/common/Input";
 import { useModal } from "@/components/common/Modal";
-import PartnerCreateModal from "@/components/modal/office/partner/create";
-import PartnerDeleteModal from "@/components/modal/office/partner/delete";
-import PartnerSendNotifModal from "@/components/modal/office/partner/send_notif";
-import PartnerUpdateModal from "@/components/modal/office/partner/update";
-import { ColumnPartner } from "@/constant/column_partner";
+import PackageCreateModal from "@/components/modal/office/package/create";
+import PackageDeleteModal from "@/components/modal/office/package/delete";
+import PackageUpdateModal from "@/components/modal/office/package/update";
+import { ColumnPackage } from "@/constant/column_package";
 import { PencilIcon, SendIcon, Trash2Icon } from "lucide-react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -25,54 +24,23 @@ export default function index() {
   const dummyData = [
     {
       id: 1,
-      name: "Midland Properti",
-      email: "admin@midlandproperti.com",
-      phone: "089977766688",
-      address: "Jl Sukamulya No 20, Tanjung Priok, Jakarta Utara",
-      package_id: 1,
-      package_name: "Premium",
-      due_date: "2026-03-20",
-      status: "Active",
+      name: "Basic",
+      detail: "admin@midlandproperti.com",
     },
     {
       id: 2,
-      name: "Eastwell Avenue",
-      email: "admin@eastwell.com",
-      phone: "08812345678",
-      address: "Jl Cipinang Muara No 20, Jakarta Timur",
-      package_id: 2,
-      package_name: "Basic",
-      due_date: "2026-03-20",
-      status: "Active",
+      name: "Premium",
+      detail: "admin@eastwell.com",
     },
     {
       id: 3,
-      name: "Semanan Regency",
-      email: "admin@semanan.com",
-      phone: "088123456789",
-      address: "Jl Koja No 20, Jakarta Utara",
-      package_id: 3,
-      package_name: "VIP",
-      due_date: "2027-03-20",
-      status: "Active",
+      name: "VIP",
+      detail: "admin@semanan.com"
     },
   ].map((item, index) => ({
     ...item,
     action: (
       <div key={index} className="flex gap-2">
-        <Button
-          variant="primary"
-          type="button"
-          onClick={() => {
-            setModal({
-              open: true,
-              data: item,
-              key: "send_notif",
-            });
-          }}
-        >
-          <SendIcon className="w-4 h-4" />
-        </Button>
         <Button
           variant="success"
           type="button"
@@ -135,7 +103,7 @@ export default function index() {
               });
             }}
           >
-            + Add Partner
+            + Add Package
           </Button>
         </div>
       </div>
@@ -143,7 +111,7 @@ export default function index() {
         {show && (
           <div className="mt-4">
             <DataTable
-              columns={ColumnPartner}
+              columns={ColumnPackage}
               data={dummyData}
               pagination
               highlightOnHover
@@ -168,27 +136,20 @@ export default function index() {
         )}
       </div>
       {modal?.key == "create" && (
-        <PartnerCreateModal
+        <PackageCreateModal
           open={modal.open}
           setOpen={() => setModal({ ...modal, open: false })}
         />
       )}
       {modal?.key == "update" && (
-        <PartnerUpdateModal
+        <PackageUpdateModal
           open={modal.open}
           setOpen={() => setModal({ ...modal, open: false })}
           data={modal.data}
         />
       )}
       {modal?.key == "delete" && (
-        <PartnerDeleteModal
-          open={modal.open}
-          setOpen={() => setModal({ ...modal, open: false })}
-          data={modal.data}
-        />
-      )}
-      {modal?.key == "send_notif" && (
-        <PartnerSendNotifModal
+        <PackageDeleteModal
           open={modal.open}
           setOpen={() => setModal({ ...modal, open: false })}
           data={modal.data}

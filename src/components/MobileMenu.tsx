@@ -10,6 +10,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { INavigation } from "../types/navigation";
+import { getIcon } from "./Sidebar";
 
 interface Props {
   navigations: INavigation[];
@@ -23,20 +24,6 @@ export default function MobileMenu({
   setShowMenu,
 }: Props) {
   const pathname = usePathname();
-  const getIcon = (icon: string) => {
-    switch (icon) {
-      case "/icons/dashboard":
-        return <BarChart2Icon className="w-6 h-6 text-white" />;
-      case "/icons/partner":
-        return <Users2Icon className="w-6 h-6 text-white" />;
-      case "/icons/user":
-        return <UserIcon className="w-6 h-6 text-white" />;
-      case "/icons/user-log":
-        return <HistoryIcon className="w-6 h-6 text-white" />;
-      default:
-        return <></>;
-    }
-  };
   return (
     <div
       className={`fixed top-0 left-0 w-full h-full will-change-transform bg-gray-800 text-white p-6 shadow-lg transform transition-transform duration-500 ease-in-out z-[999] ${

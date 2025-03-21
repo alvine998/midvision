@@ -43,6 +43,11 @@ export const OFFICE_NAVIGATIONS = [
         icon: "/icons/dashboard",
     },
     {
+        title: "Package",
+        href: "/office/main/package",
+        icon: "/icons/package",
+    },
+    {
         title: "Partner",
         href: "/office/main/partner",
         icon: "/icons/partner",
