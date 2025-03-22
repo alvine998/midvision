@@ -26,7 +26,7 @@ export default function MobileMenu({
   const pathname = usePathname();
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-full will-change-transform bg-gray-800 text-white p-6 shadow-lg transform transition-transform duration-500 ease-in-out z-[999] ${
+      className={`fixed overflow-x-hidden overflow-y-auto top-0 left-0 w-full h-full will-change-transform bg-gray-800 text-white p-6 shadow-lg transform transition-transform duration-500 ease-in-out z-[999] ${
         showMenu ? "translate-x-0" : "-translate-x-full"
       }`}
     >

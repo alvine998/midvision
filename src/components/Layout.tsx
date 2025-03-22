@@ -22,7 +22,7 @@ export default function Layout({ children }: Props) {
       <div className="flex flex-row h-screen overflow-hidden">
         <div
           className={`bg-black ${
-            isWide ? "w-1/4" : "w-[90px]"
+            isWide ? "w-[400px]" : "w-[120px]"
           } h-screen duration-300 transition-all lg:block hidden`}
         >
           <Sidebar

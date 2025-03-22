@@ -5,16 +5,20 @@ import React from "react";
 import { INavigation } from "../types/navigation";
 import {
   BarChart2Icon,
+  CreditCardIcon,
+  FileInputIcon,
   FileTextIcon,
   GaugeIcon,
   GoalIcon,
   HistoryIcon,
+  LandmarkIcon,
   LayoutPanelTopIcon,
   ListCheckIcon,
   ListChecksIcon,
   SquareUserIcon,
   Table2Icon,
   UserIcon,
+  UserPlusIcon,
   Users2Icon,
 } from "lucide-react";
 
@@ -26,29 +30,37 @@ interface Props {
 export const getIcon = (icon: string) => {
   switch (icon) {
     case "/icons/dashboard":
-      return <BarChart2Icon className="w-6 h-6 text-white" />;
+      return <BarChart2Icon className={`w-6 h-6 text-white`} />;
     case "/icons/partner":
-      return <Users2Icon className="w-6 h-6 text-white" />;
+      return <Users2Icon className={`w-6 h-6 text-white`} />;
     case "/icons/user":
-      return <UserIcon className="w-6 h-6 text-white" />;
+      return <UserIcon className={`w-6 h-6 text-white`} />;
     case "/icons/user-log":
-      return <HistoryIcon className="w-6 h-6 text-white" />;
+      return <HistoryIcon className={`w-6 h-6 text-white`} />;
     case "/icons/package":
-      return <ListChecksIcon className="w-6 h-6 text-white" />;
+      return <ListChecksIcon className={`w-6 h-6 text-white`} />;
     case "/icons/goals":
-      return <GoalIcon className="w-6 h-6 text-white" />;
+      return <GoalIcon className={`w-6 h-6 text-white`} />;
     case "/icons/activity":
-      return <GaugeIcon className="w-6 h-6 text-white" />;
+      return <GaugeIcon className={`w-6 h-6 text-white`} />;
     case "/icons/project":
-      return <Table2Icon className="w-6 h-6 text-white" />;
+      return <Table2Icon className={`w-6 h-6 text-white`} />;
     case "/icons/so":
-      return <LayoutPanelTopIcon className="w-6 h-6 text-white" />;
+      return <LayoutPanelTopIcon className={`w-6 h-6 text-white`} />;
     case "/icons/employee":
-      return <SquareUserIcon className="w-6 h-6 text-white" />;
+      return <SquareUserIcon className={`w-6 h-6 text-white`} />;
     case "/icons/reports":
-      return <FileTextIcon className="w-6 h-6 text-white" />;
+      return <FileTextIcon className={`w-6 h-6 text-white`} />;
     case "/icons/todo":
-      return <ListCheckIcon className="w-6 h-6 text-white" />;
+      return <ListCheckIcon className={`w-6 h-6 text-white`} />;
+    case "/icons/attendance":
+      return <FileInputIcon className={`w-6 h-6 text-white`} />;
+    case "/icons/payroll":
+      return <CreditCardIcon className={`w-6 h-6 text-white`} />;
+    case "/icons/finance":
+      return <LandmarkIcon className={`w-6 h-6 text-white`} />;
+    case "/icons/recruitment":
+      return <UserPlusIcon className={`w-6 h-6 text-white`} />;
     default:
       return <></>;
   }
@@ -58,7 +70,7 @@ export default function Sidebar({ navigations, isWide }: Props) {
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col items-center py-2">
+    <div className="flex flex-col items-center py-2 overflow-y-auto overflow-x-hidden h-screen">
       <div className="mt-2">
         <h1
           className={`${isWide ? "text-2xl" : "text-xs"} text-white font-bold`}
@@ -76,7 +88,7 @@ export default function Sidebar({ navigations, isWide }: Props) {
       </div>
       <div className="py-5 px-4 mt-5 w-full border-t-2 border-t-white">
         {navigations.map((navigation, index) => (
-          <div key={index} className="my-2">
+          <div key={index} className="my-2 w-full">
             <Link
               href={navigation.href}
               className={`${
@@ -90,7 +102,7 @@ export default function Sidebar({ navigations, isWide }: Props) {
               }`}
             >
               {getIcon(navigation.icon)}
-              {isWide ? <p className="text-white">{navigation.title}</p> : ""}
+              {isWide ? <p className="text-white w-full truncate">{navigation.title}</p> : ""}
             </Link>
           </div>
         ))}

@@ -30,6 +30,26 @@ export const NAVIGATIONS = [
         icon: "/icons/employee",
     },
     {
+        title: "Attendance",
+        href: "/main/attendance",
+        icon: "/icons/attendance",
+    },
+    {
+        title: "Payroll",
+        href: "/main/payroll",
+        icon: "/icons/payroll",
+    },
+    {
+        title: "Finance",
+        href: "/main/finance",
+        icon: "/icons/finance",
+    },
+    {
+        title: "Recruitment",
+        href: "/main/recruitment",
+        icon: "/icons/recruitment",
+    },
+    {
         title: "Reports",
         href: "/main/reports",
         icon: "/icons/reports",
