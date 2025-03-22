@@ -5,8 +5,15 @@ import React from "react";
 import { INavigation } from "../types/navigation";
 import {
   BarChart2Icon,
+  FileTextIcon,
+  GaugeIcon,
+  GoalIcon,
   HistoryIcon,
+  LayoutPanelTopIcon,
+  ListCheckIcon,
   ListChecksIcon,
+  SquareUserIcon,
+  Table2Icon,
   UserIcon,
   Users2Icon,
 } from "lucide-react";
@@ -28,6 +35,20 @@ export const getIcon = (icon: string) => {
       return <HistoryIcon className="w-6 h-6 text-white" />;
     case "/icons/package":
       return <ListChecksIcon className="w-6 h-6 text-white" />;
+    case "/icons/goals":
+      return <GoalIcon className="w-6 h-6 text-white" />;
+    case "/icons/activity":
+      return <GaugeIcon className="w-6 h-6 text-white" />;
+    case "/icons/project":
+      return <Table2Icon className="w-6 h-6 text-white" />;
+    case "/icons/so":
+      return <LayoutPanelTopIcon className="w-6 h-6 text-white" />;
+    case "/icons/employee":
+      return <SquareUserIcon className="w-6 h-6 text-white" />;
+    case "/icons/reports":
+      return <FileTextIcon className="w-6 h-6 text-white" />;
+    case "/icons/todo":
+      return <ListCheckIcon className="w-6 h-6 text-white" />;
     default:
       return <></>;
   }
@@ -42,7 +63,7 @@ export default function Sidebar({ navigations, isWide }: Props) {
         <h1
           className={`${isWide ? "text-2xl" : "text-xs"} text-white font-bold`}
         >
-          MidVision Office
+          MidVision {pathname?.includes("office") ? "Office" : ""}
         </h1>
         {/* <Image
           alt="logo"
@@ -69,14 +90,6 @@ export default function Sidebar({ navigations, isWide }: Props) {
               }`}
             >
               {getIcon(navigation.icon)}
-              {/* <Image
-                alt={navigation.title}
-                src={`${navigation.icon}`}
-                className="w-auto h-auto"
-                layout="relative"
-                width={5}
-                height={5}
-              /> */}
               {isWide ? <p className="text-white">{navigation.title}</p> : ""}
             </Link>
           </div>

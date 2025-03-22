@@ -59,14 +59,6 @@ export default function MobileMenu({
               } py-2 px-4 w-full flex items-center justify-start rounded-full`}
             >
               {getIcon(navigation.icon)}
-              {/* <Image
-                alt={navigation.title}
-                src={`${navigation.icon}`}
-                className="w-auto h-auto"
-                layout="relative"
-                width={5}
-                height={5}
-              /> */}
               <p className="text-white">{navigation.title}</p>
             </Link>
           </div>
