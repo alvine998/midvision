@@ -5,7 +5,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button: React.FC<ButtonProps> = ({ variant = "primary", className, children, ...props }) => {
-  const baseStyles = "px-4 py-2 rounded-md font-medium focus:outline-none focus:ring-2 transition duration-300";
+  const baseStyles = "px-4 py-2 rounded-md font-medium focus:outline-none focus:ring-2 transition duration-300 text-xs";
   
   const variantStyles: Record<string, string> = {
     primary: "bg-blue-500 text-white rounded hover:bg-blue-600 focus:ring-blue-300",

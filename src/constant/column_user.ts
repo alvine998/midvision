@@ -13,11 +13,16 @@ export const ColumnUser = [
         name: "No Telepon",
         selector: (row: any) => row.phone,
         sortable: true,
-        width: "130px"
     },
     {
         name: "Peran",
         selector: (row: any) => row.role,
+        sortable: true,
+        width: "130px"
+    },
+    {
+        name: "Status",
+        selector: (row: any) => row.status.replace("_", " "),
         sortable: true,
         width: "130px"
     },
