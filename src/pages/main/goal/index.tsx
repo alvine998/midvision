@@ -1,6 +1,9 @@
 import Button from "@/components/common/Button";
 import Input from "@/components/common/Input";
 import { useModal } from "@/components/common/Modal";
+import GoalCreateModal from "@/components/modal/goal/create";
+import GoalDeleteModal from "@/components/modal/goal/delete";
+import GoalUpdateModal from "@/components/modal/goal/update";
 import UserCreateModal from "@/components/modal/user/create";
 import UserDeleteModal from "@/components/modal/user/delete";
 import UserUpdateModal from "@/components/modal/user/update";
@@ -25,27 +28,11 @@ export default function index() {
   const dummyData = [
     {
       id: 1,
-      name: "Alvine",
-      email: "alvine@midvision.id",
-      phone: "089977766688",
-      role: "super_admin",
+      name: "KPI 1",
+      description: "description",
+      date_start: "2025-03-05",
+      date_end: "2025-10-05",
       status: "active",
-    },
-    {
-      id: 2,
-      name: "Ikna",
-      email: "ikna@midvision.id",
-      phone: "08812345678",
-      role: "super_admin",
-      status: "active",
-    },
-    {
-      id: 3,
-      name: "Dadang",
-      email: "dadang@midvision.id",
-      phone: "088123456789",
-      role: "admin",
-      status: "inactive",
     },
   ].map((item, index) => ({
     ...item,
@@ -113,7 +100,7 @@ export default function index() {
               });
             }}
           >
-            + Add User
+            + Add Goal
           </Button>
         </div>
       </div>
@@ -146,20 +133,20 @@ export default function index() {
         )}
       </div>
       {modal?.key == "create" && (
-        <UserCreateModal
+        <GoalCreateModal
           open={modal.open}
           setOpen={() => setModal({ ...modal, open: false })}
         />
       )}
       {modal?.key == "update" && (
-        <UserUpdateModal
+        <GoalUpdateModal
           open={modal.open}
           setOpen={() => setModal({ ...modal, open: false })}
           data={modal.data}
         />
       )}
       {modal?.key == "delete" && (
-        <UserDeleteModal
+        <GoalDeleteModal
           open={modal.open}
           setOpen={() => setModal({ ...modal, open: false })}
           data={modal.data}
