@@ -29,6 +29,7 @@ export const ColumnUser = [
     {
         name: "Aksi",
         selector: (row: any) => row.action,
-        sortable: true
+        sortable: true,
+        width: "250px"
     },
 ]
